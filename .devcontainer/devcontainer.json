@@ -1,0 +1,37 @@
+{
+  "name": "java25-spring-dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "mounts": [
+    "source=maven-cache,target=/home/vscode/.m2,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "sonarsource.sonarlint-vscode",
+        "redhat.vscode-yaml",
+        "EditorConfig.EditorConfig",
+        "humao.rest-client"
+      ],
+      "settings": {
+        "java.import.gradle.enabled": false,
+        "java.configuration.updateBuildConfiguration": "interactive",
+        "java.saveActions.organizeImports": true,
+        "java.codeGeneration.useBlocks": true,
+        "java.test.defaultConfig": "maven",
+        "editor.formatOnSave": true,
+        "editor.rulers": [120],
+        "[java]": {
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  },
+  "postCreateCommand": "if [ -f ./mvnw ]; then chmod +x ./mvnw && ./mvnw -q -v; fi"
+}
